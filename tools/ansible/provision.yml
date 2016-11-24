@@ -1,0 +1,48 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: Set up localhost group so we can use it to exclude later
+    add_host:
+      hostname: localhost
+      ansible_python_interpreter: "python"
+      ansible_ssh_host: 127.0.0.1
+      ansible_connection: local
+      groups: localhost
+
+- hosts: all:!localhost
+  gather_facts: false
+  tasks:
+    - { include: tasks/server-name.yml }
+    - { include: tasks/smart-grouping.yml }
+
+- hosts: digital-ocean
+  connection: local
+  gather_facts: false
+  roles:
+  - { role: digital-ocean }
+
+- hosts: rackspace-cloud
+  connection: local
+  gather_facts: false
+  roles:
+    - { role: rackspace-cloud }
+
+- hosts: aws-ec2
+  connection: local
+  gather_facts: false
+  roles:
+    - { role: aws-ec2 }
+
+- hosts: all:!localhost
+  roles:
+    - { role: cloudflare, when: host_provisioned is defined and host_provisioned }
+    - { role: security }
+    - { role: monitoring }
+    - { role: config-driven-helper }
+    #- { role: knife-solo }
+
+- hosts: digitalocean-floating-ip
+  roles:
+    - {role: digitalocean-floating-ip}
+...

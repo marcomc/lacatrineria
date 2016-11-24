@@ -1,0 +1,13 @@
+---
+aws_access_key_id: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
+aws_secret_access_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
+aws_ec2_region: "{{ ec2_region | default('eu-west-1')}}"
+aws_ec2_availability_zone: "{{ ec2_availability_zone | default('eu-west-1a') }}"
+aws_ec2_instance_type: "{{ ec2_instance_type | default('t1.micro') }}"
+aws_ec2_image: "{{ ec2_image | default('ami-2918e35e') }}"
+aws_ec2_keypair: "{{ ec2_keypair }}"
+aws_ec2_security_group: "{{ ec2_security_group }}"
+aws_ec2_instance_tags: "{{ ec2_instance_tags }}"
+aws_ec2_count_tag: "{{ ec2_count_tag }}"
+aws_ec2_exact_count: "{{ ec2_exact_count }}"
+...

@@ -1,0 +1,9 @@
+---
+  jumpcloud_x_connect_key: "{{ enc_jumpcloud_x_connect_key }}"
+  jumpcloud_api_key: "{{ enc_jumpcloud_api_key }}"
+  jumpcloud_displayName: "{{ inventory_hostname }}"
+  jumpcloud_allowSshPasswordAuthentication: 'false'
+  jumpcloud_allowSshRootLogin: 'true'
+  jumpcloud_allowMultiFactorAuthentication: 'false'
+  jumpcloud_allowPublicKeyAuthentication: 'true'
+...

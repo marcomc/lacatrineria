@@ -1,0 +1,5 @@
+---
+name:             'web-prod-lacatrineria'
+digitalocean_floating_ip_enable: true
+digital_ocean_floating_ip: "188.166.138.193"
+...

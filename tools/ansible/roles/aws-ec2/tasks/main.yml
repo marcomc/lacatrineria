@@ -1,0 +1,41 @@
+---
+- name: Launch new EC2 Instance.
+  ec2:
+    #state: present
+    key_name: "{{ aws_ec2_keypair | mandatory }}"
+    group: "{{ aws_ec2_security_group | mandatory }}"
+    instance_type: "{{ aws_ec2_instance_type | mandatory }}"
+    image: "{{ aws_ec2_image | mandatory }}"
+    wait: true
+    region: "{{ aws_ec2_region | mandatory }}"
+    zone: "{{ aws_ec2_availability_zone | mandatory }}"
+    instance_tags: "{{ aws_ec2_instance_tags }}"
+    count_tag: "{{ aws_ec2_count_tag}}"
+    exact_count: "{{ aws_ec2_exact_count}}"
+    #assign_public_ip: yes
+    aws_access_key: "{{ aws_access_key_id }}"
+    aws_secret_key: "{{ aws_secret_access_key }}"
+  delegate_to: 127.0.0.1
+  register: ec2
+
+# - name: Associate a specific Elastic IP with the EC2 Instance
+#   ec2_eip:
+#     device_id: "{{item.id}}"
+#     ip: "{{aws_ec2_elastic_ip}}"
+#   with_items: "{{ec2.tagged_instances}}"
+
+- name: Set the IP to connect.
+  set_fact:
+    ansible_ssh_host: "{{ item.public_ip }}"
+  with_items: "{{ec2.tagged_instances}}"
+
+- name: Wait for SSH to come up
+  wait_for: host={{ ansible_ssh_host }} port=22 delay=10 timeout=320 state=started
+
+- name: Set whether the server has been freshly provisioned
+  set_fact:
+    host_provisioned: true
+  when: ec2.changed
+
+
+...

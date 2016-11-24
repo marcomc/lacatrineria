@@ -1,0 +1,13 @@
+---
+environment: production
+pipeline: yes
+
+# attributes to activate local roles
+provider: digital-ocean
+#jumpcloud_tags:
+#   - 'a-jumpcloud-tag'
+
+# attributes for ansible-config-driven-helper
+cloudflare_zone: "lacatrineria.com"
+update_sudoers: yes
+...

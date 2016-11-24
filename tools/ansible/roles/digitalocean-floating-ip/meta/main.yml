@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: inviqa.digitalocean-floating-ip }
+...

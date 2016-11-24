@@ -1,0 +1,48 @@
+---
+- name: Create hosting provider groups
+  group_by:
+    key: "{{ provider | replace(' ', '-') | lower }}"
+  when: provider is defined
+  # "provider" can be "digitalocean" or "rackspace-cloud" or other to be defined
+
+- name: Split into hosts for those that should have a Digital Ocean Floating IP
+  group_by:
+    key: 'digitalocean-floating-ip'
+  when: digitalocean_floating_ip_enable is defined and digitalocean_floating_ip_enable
+  tags: digitalocean_floating_ip
+
+- name: Create hosting provider account groups
+  group_by:
+    key: "{{ provider_account }}"
+  when: provider_account is defined
+
+- name: Create pipeline/production groups
+  group_by:
+    key: "{{ server_environment }}"
+  when: server_environment is defined
+
+- name: Split into hosts for those that should have ServerDensity
+  group_by:
+    key: 'server-density'
+    when: serverdensity_enable is defined and serverdensity_enable
+  tags: serverdensity
+
+- name: Split into hosts for those that should be on ServerPilot
+  group_by:
+    key: 'serverpilot'
+    when: serverpilot_enable is defined and serverpilot_enable
+  tags: serverpilot
+
+- name: Split into hosts for those that should be on JumpCloud
+  group_by:
+    key: 'jumpcloud'
+    when: jumpcloud_enable is defined and jumpcloud_enable
+  tags: jumpcloud
+
+- name: Split into hosts for those that should have dome9
+  group_by:
+    key: 'dome9'
+    when: dome9_enable is defined and dome9_enable
+  tags: dome9
+
+...

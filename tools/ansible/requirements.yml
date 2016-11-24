@@ -1,0 +1,29 @@
+---
+- src:      ajsalminen.hosts
+- src:      shrikeh.facl
+- src:      shrikeh.curl
+- src:      shrikeh.papertrail-rsyslog
+- src:      shrikeh.server-density-monitoring
+- src:      shrikeh.fail2ban
+- src:      goozbach.EPEL
+- src:      bennojoy.ntp
+- src:      avelis.dome9
+- src:      Rackor3000.sudo
+
+- src:      https://github.com/DrMegahertz/ansible-cloudflare
+  name:     DrMegahertz.cloudflare
+  version:  master
+
+- src:      https://github.com/inviqa/ansible-jumpcloud
+  name:     inviqa.jumpcloud
+  version:  master
+- src:      https://github.com/inviqa/ansible-knife-solo
+  name:     inviqa.knife-solo
+  version:  master
+- src:      https://github.com/inviqa/ansible-digitalocean-floating-ip
+  name:     inviqa.digitalocean-floating-ip
+  version:  master
+- src:      https://github.com/inviqa/ansible-config-driven-helper
+  name:     inviqa.config-driven-helper
+  version:  master
+...

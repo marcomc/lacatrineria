@@ -1,0 +1,13 @@
+---
+  - include: provision.yml
+
+  # - hosts: project-pipeline-group-sample
+  #   roles:
+  #     - { role: a-role }
+  #     - { role: another-role}
+  #   tasks:
+  #     - name: a-task
+  #       ...
+  #     - name: another-task
+  #       ...
+...

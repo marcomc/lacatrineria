@@ -1,0 +1,4 @@
+---
+    papertrail_log_domain: "{{ enc_papertrail_log_domain }}"
+    papertrail_log_port: "{{ enc_papertrail_log_port }}"
+...

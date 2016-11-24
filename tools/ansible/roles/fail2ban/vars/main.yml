@@ -1,0 +1,18 @@
+---
+inviqa_ip_whitelist:
+  frontdoor1:
+    name: Frontdoor 1
+    ips:
+      - '204.236.239.215'
+  frontdoor2:
+    name: frontdoor2
+    ips:
+      - '79.125.120.235'
+
+f2b_frontdoor: "{{ inviqa_ip_whitelist.frontdoor1.ips + inviqa_ip_whitelist.frontdoor2.ips }}"
+
+inviqa_fail2ban_ignoreips: "{{ f2b_frontdoor | unique }}"
+
+fail2ban_ignoreip: "{{ fail2ban_default_ips + inviqa_fail2ban_ignoreips }}"
+
+...

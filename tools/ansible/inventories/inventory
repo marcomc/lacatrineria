@@ -1,0 +1,3 @@
+[lacatrineria]
+#sample-server-uat-project-client provider=digital-ocean hostname_name=sample-server-uat-project-client server-density=no server_environment=pipeline
+web-prod.lacatrineria.com

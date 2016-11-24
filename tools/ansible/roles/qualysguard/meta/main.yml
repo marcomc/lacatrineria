@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: shrikeh.qualys-cloud-agent }
+...
